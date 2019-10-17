@@ -1,0 +1,88 @@
+﻿@page "/"
+@page "/contacts/{RowKey:guid}"
+
+@inject ContactService ContactService
+@inject NavigationManager NavigationManager
+
+@if (IsNewContact)
+{
+    <h1>Nouveau contact</h1>
+}
+else
+{
+    <h1>@Contact.Name</h1>
+}
+
+<EditForm Model="@Contact" OnValidSubmit="@ValidSubmitAsync">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText Class="form-control" id="name" @bind-Value="Contact.Name" />
+        <InvalidFeedback For="@(() => Contact.Name)" />
+    </div>
+    <div class="form-group">
+        <label for="sms">SMS:</label>
+        <InputText Class="form-control" id="sms" @bind-Value="Contact.SMS" />
+        <InvalidFeedback For="@(() => Contact.SMS)" />
+    </div>
+    <div class="form-group">
+        <label for="email">Courriel:</label>
+        <InputText Class="form-control" id="email" @bind-Value="Contact.Email" />
+        <InvalidFeedback For="@(() => Contact.Email)" />
+    </div>
+    <div class="form-group">
+        <label for="other">Autre:</label>
+        <InputText Class="form-control" id="other" @bind-Value="Contact.Other" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+
+    @if (!IsNewContact)
+    {
+        <button type="button" class="btn btn-secondary" @onclick="Cancel">Annuler</button>
+    }
+</EditForm>
+
+@code {
+    [Parameter]
+    public Guid RowKey { get; set; }
+
+    public bool IsNewContact => RowKey == default;
+
+    Contact Contact { get; set; } = new Contact();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (RowKey != default)
+        {
+            Contact = await ContactService.GetAsync(RowKey);
+            StateHasChanged();
+        }
+    }
+
+    async Task ValidSubmitAsync()
+    {
+        await ContactService.CreateOrUpdateAsync(Contact);
+
+        if (IsNewContact)
+        {
+            Contact = new Contact();
+            StateHasChanged();
+        }
+        else
+        {
+            BackToList();
+        }
+    }
+
+    void Cancel()
+    {
+        BackToList();
+    }
+
+    void BackToList()
+    {
+        NavigationManager.NavigateTo("/contacts");
+    }
+}
