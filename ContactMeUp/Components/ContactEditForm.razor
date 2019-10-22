@@ -1,18 +1,6 @@
-﻿@page "/"
-@page "/contacts/{RowKey:guid}"
+﻿@inherits ContactEditFormBase
 
-@inherits ContactEditBase
-
-@if (IsNewContact)
-{
-    <h1>Nouveau contact</h1>
-}
-else
-{
-    <h1>@Contact.Name</h1>
-}
-
-<EditForm Model="@Contact" OnValidSubmit="@ValidSubmitAsync">
+<EditForm Model="@Contact" OnValidSubmit="@OnValidSubmit">
     <FluentValidationValidator />
 
     <div class="form-group">
@@ -37,8 +25,8 @@ else
 
     <button type="submit" class="btn btn-primary">Sauvegarder</button>
 
-    @if (!IsNewContact)
+    @if (ShowCancelButton)
     {
-        <button type="button" class="btn btn-secondary" @onclick="Cancel">Annuler</button>
+        <button type="button" class="btn btn-secondary" @onclick="OnCancel">Annuler</button>
     }
 </EditForm>

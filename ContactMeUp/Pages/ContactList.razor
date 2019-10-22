@@ -29,12 +29,12 @@ else
             {
                 <tr>
                     <td><a href="javascript: void(0)" alt="Supprimer"><span class="oi oi-circle-x" @onclick="@(_ => ConfirmDelete(contact))"></span></a></td>
-                    <td><a href=@($"/contacts/{contact.RowKey}") alt="Modifier"><span class="oi oi-pencil"></span></a></td>
+                    <td><a href="javascript: void(0)" alt="Modifier"><span class="oi oi-pencil" @onclick="@(_ => Update(contact))"></span></a></td>
                     <td>@contact.Timestamp.DateTime.ToString("dd/MM/yy hh:mm")</td>
                     <td>@contact.Name</td>
-                    <td>@contact.SMS</td>
-                    <td>@contact.Email</td>
-                    <td>@contact.Other</td>
+                    <td class="hidetext">@contact.SMS</td>
+                    <td class="hidetext">@contact.Email</td>
+                    <td class="hidetext">@contact.Other</td>
                 </tr>
             }
         </tbody>
