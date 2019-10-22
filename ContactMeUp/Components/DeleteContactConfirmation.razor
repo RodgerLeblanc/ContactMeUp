@@ -1,0 +1,13 @@
+﻿@inherits DeleteContactConfirmationBase
+
+<div class="simple-form">
+    <div class="form-group">
+        @if (ToDelete != null)
+        {
+            <label>Êtes-vous sûr de vouloir supprimer "@ToDelete.Name"</label>
+        }
+    </div>
+
+    <button @onclick="@DeleteAsync" class="btn btn-primary">Supprimer</button>
+    <button @onclick="@Cancel" class="btn btn-secondary">Annuler</button>
+</div>
