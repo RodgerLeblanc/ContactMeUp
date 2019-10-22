@@ -149,5 +149,40 @@ namespace ContactMeUp.Data
                 throw new InvalidOperationException("Error while creating the entity.", e);
             }
         }
+
+        public async Task<int> DeleteAsync(TEntity entity)
+        {
+            if (Table == null)
+            {
+                throw new InvalidOperationException($"Could not find a valid {nameof(Table)}.");
+            }
+
+            if (!_initialized)
+            {
+                throw new InvalidOperationException($"The {nameof(Table)} is not initialized.");
+            }
+
+            if (string.IsNullOrEmpty(entity.RowKey))
+            {
+                throw new ArgumentException($"The entity does not have a valid {nameof(ITableEntity.RowKey)}.");
+            }
+
+            try
+            {
+                TableOperation operation = TableOperation.Delete(entity);
+                TableResult result = await Table.ExecuteAsync(operation);
+
+                if (!result.IsSuccessStatusCode())
+                {
+                    throw new InvalidOperationException($"Could not delete the entry ({result.HttpStatusCode}) : {result.Etag} - {result.Result}");
+                }
+
+                return 1;
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException("Error while deleting the entity.", e);
+            }
+        }
     }
 }

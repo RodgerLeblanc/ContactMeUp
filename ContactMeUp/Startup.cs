@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ContactMeUp.Data;
+using Blazored.Modal;
 
 namespace ContactMeUp
 {
@@ -28,6 +29,7 @@ namespace ContactMeUp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddBlazoredModal();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<ContactAzureStorageConfiguration>();
             services.AddSingleton<ContactService>();
