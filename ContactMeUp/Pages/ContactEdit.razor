@@ -14,7 +14,7 @@ else
 }
 
 <EditForm Model="@Contact" OnValidSubmit="@ValidSubmitAsync">
-    <DataAnnotationsValidator />
+    <FluentValidationValidator />
 
     <div class="form-group">
         <label for="name">Name:</label>
