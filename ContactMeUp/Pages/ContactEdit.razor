@@ -1,8 +1,7 @@
 ﻿@page "/"
 @page "/contacts/{RowKey:guid}"
 
-@inject ContactService ContactService
-@inject NavigationManager NavigationManager
+@inherits ContactEditBase
 
 @if (IsNewContact)
 {
@@ -14,7 +13,7 @@ else
 }
 
 <EditForm Model="@Contact" OnValidSubmit="@ValidSubmitAsync">
-    <DataAnnotationsValidator />
+    <FluentValidationValidator />
 
     <div class="form-group">
         <label for="name">Name:</label>
@@ -43,46 +42,3 @@ else
         <button type="button" class="btn btn-secondary" @onclick="Cancel">Annuler</button>
     }
 </EditForm>
-
-@code {
-    [Parameter]
-    public Guid RowKey { get; set; }
-
-    public bool IsNewContact => RowKey == default;
-
-    Contact Contact { get; set; } = new Contact();
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (RowKey != default)
-        {
-            Contact = await ContactService.GetAsync(RowKey);
-            StateHasChanged();
-        }
-    }
-
-    async Task ValidSubmitAsync()
-    {
-        await ContactService.CreateOrUpdateAsync(Contact);
-
-        if (IsNewContact)
-        {
-            Contact = new Contact();
-            StateHasChanged();
-        }
-        else
-        {
-            BackToList();
-        }
-    }
-
-    void Cancel()
-    {
-        BackToList();
-    }
-
-    void BackToList()
-    {
-        NavigationManager.NavigateTo("/contacts");
-    }
-}

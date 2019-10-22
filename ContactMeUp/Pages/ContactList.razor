@@ -1,13 +1,12 @@
 ﻿@page "/contacts"
 
-@inject ContactService ContactService
-@inject NavigationManager  NavigationManager
+@inherits ContactListBase
 
 <h1>Contacts</h1>
 
 <p>Liste des contacts enregistrés</p>
 
-@if (contacts == null)
+@if (Contacts == null)
 {
     <p><em>Chargement...</em></p>
 }
@@ -17,6 +16,7 @@ else
         <thead>
             <tr>
                 <th></th>
+                <th></th>
                 <th>Date</th>
                 <th>Nom</th>
                 <th>SMS</th>
@@ -25,26 +25,18 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var contact in contacts)
+            @foreach (var contact in Contacts)
             {
-            <tr>
-                <td><a href=@($"/contacts/{contact.RowKey}") alt="Modifier"><span class="oi oi-pencil"></span></a></td>
-                <td>@contact.Timestamp.DateTime.ToString("dd/MM/yy hh:mm")</td>
-                <td>@contact.Name</td>
-                <td>@contact.SMS</td>
-                <td>@contact.Email</td>
-                <td>@contact.Other</td>
-            </tr>
+                <tr>
+                    <td><a href="javascript: void(0)" alt="Supprimer"><span class="oi oi-circle-x" @onclick="@(_ => ConfirmDelete(contact))"></span></a></td>
+                    <td><a href=@($"/contacts/{contact.RowKey}") alt="Modifier"><span class="oi oi-pencil"></span></a></td>
+                    <td>@contact.Timestamp.DateTime.ToString("dd/MM/yy hh:mm")</td>
+                    <td>@contact.Name</td>
+                    <td>@contact.SMS</td>
+                    <td>@contact.Email</td>
+                    <td>@contact.Other</td>
+                </tr>
             }
         </tbody>
     </table>
-}
-
-@code {
-    private IList<Contact> contacts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        contacts = await ContactService.GetAsync();
-    }
 }
