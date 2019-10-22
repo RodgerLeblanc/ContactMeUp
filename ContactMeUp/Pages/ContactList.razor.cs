@@ -10,9 +10,14 @@ namespace ContactMeUp.Pages
 {
     public abstract class ContactListBase : ComponentBase
     {
-        [Inject] protected IModalService ModalService { get; set; }
-        [Inject] protected ContactService ContactService { get; set; }
-        [Inject] protected NavigationManager NavigationManager { get; set; }
+        [Inject] 
+        protected IModalService ModalService { get; set; }
+        
+        [Inject] 
+        protected ContactService ContactService { get; set; }
+        
+        [Inject] 
+        protected NavigationManager NavigationManager { get; set; }
 
         protected IList<Contact> Contacts { get; private set; }
 
@@ -23,7 +28,7 @@ namespace ContactMeUp.Pages
 
         protected void ConfirmDelete(Contact contact)
         {
-            ModalService.OnClose += ModalClosed;
+            ModalService.OnClose += ConfirmDeleteModalClosed;
 
             ModalParameters parameters = new ModalParameters();
             parameters.Add("ToDelete", contact);
@@ -31,9 +36,30 @@ namespace ContactMeUp.Pages
             ModalService.Show<DeleteContactConfirmation>("Supprimer le contact?", parameters);
         }
 
-        private async void ModalClosed(ModalResult modalResult)
+        private async void ConfirmDeleteModalClosed(ModalResult modalResult)
         {
-            ModalService.OnClose -= ModalClosed;
+            ModalService.OnClose -= ConfirmDeleteModalClosed;
+
+            if (!modalResult.Cancelled)
+            {
+                Contacts = await ContactService.GetAsync();
+                StateHasChanged();
+            }
+        }
+
+        protected void Update(Contact contact)
+        {
+            ModalService.OnClose += UpdateModalClosed;
+
+            ModalParameters parameters = new ModalParameters();
+            parameters.Add("ToUpdate", contact);
+
+            ModalService.Show<ContactUpdate>("Modifier le contact", parameters);
+        }
+
+        private async void UpdateModalClosed(ModalResult modalResult)
+        {
+            ModalService.OnClose -= UpdateModalClosed;
 
             if (!modalResult.Cancelled)
             {

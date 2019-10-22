@@ -1,0 +1,7 @@
+﻿@inherits ContactCreateBase
+
+<h1>Nouveau contact</h1>
+
+<CascadingValue Value="@Contact">
+    <ContactEditForm ShowCancelButton="true" OnValidSubmit="@ValidSubmitAsync" OnCancel="@Cancel" />
+</CascadingValue>

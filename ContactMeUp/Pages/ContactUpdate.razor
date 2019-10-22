@@ -1,0 +1,10 @@
+﻿@inherits ContactUpdateBase
+
+@if (Contact != null)
+{
+    <h1>@Contact.Name</h1>
+}
+
+<CascadingValue Value="@Contact">
+    <ContactEditForm ShowCancelButton="true" OnValidSubmit="@ValidSubmitAsync" OnCancel="@Cancel" />
+</CascadingValue>

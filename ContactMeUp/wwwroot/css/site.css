@@ -148,3 +148,8 @@ app {
         display: block;
     }
 }
+
+/*https://stackoverflow.com/questions/47789667/table-cells-as-a-password-type*/
+.hidetext {
+    -webkit-text-security: disc;
+}
