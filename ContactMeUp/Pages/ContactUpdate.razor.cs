@@ -1,7 +1,7 @@
-﻿using Blazored.Modal;
-using Blazored.Modal.Services;
-using ContactMeUp.Data;
+﻿using ContactMeUp.Data;
 using Microsoft.AspNetCore.Components;
+using Sparks.Components.Blazor;
+using Sparks.Components.Blazor.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +11,9 @@ namespace ContactMeUp.Pages
 {
     public abstract class ContactUpdateBase : ContactEditBase
     {
-        [Inject] 
-        protected IModalService ModalService { get; set; }
+        [Inject] protected IModalService ModalService { get; set; }
 
-        [CascadingParameter] 
-        ModalParameters Parameters { get; set; }
+        [CascadingParameter] ModalParameters Parameters { get; set; }
 
         protected override void OnInitialized()
         {

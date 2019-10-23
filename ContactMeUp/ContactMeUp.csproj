@@ -6,13 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazored.Modal" Version="2.3.0" />
     <PackageReference Include="FluentValidation" Version="8.5.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sparks.Controls.Blazor\Sparks.Controls.Blazor.csproj" />
+    <ProjectReference Include="..\Sparks.Components\Sparks.Components.Blazor\Sparks.Components.Blazor.csproj" />
   </ItemGroup>
 
   <ItemGroup>

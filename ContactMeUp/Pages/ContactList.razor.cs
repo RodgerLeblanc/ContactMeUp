@@ -1,8 +1,8 @@
-﻿using Blazored.Modal;
-using Blazored.Modal.Services;
-using ContactMeUp.Components;
+﻿using ContactMeUp.Components;
 using ContactMeUp.Data;
 using Microsoft.AspNetCore.Components;
+using Sparks.Components.Blazor;
+using Sparks.Components.Blazor.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -28,7 +28,7 @@ namespace ContactMeUp.Pages
 
         protected void ConfirmDelete(Contact contact)
         {
-            ModalService.OnClose += ConfirmDeleteModalClosed;
+            ModalService.Closed += ConfirmDeleteModalClosed;
 
             ModalParameters parameters = new ModalParameters();
             parameters.Add("ToDelete", contact);
@@ -38,9 +38,9 @@ namespace ContactMeUp.Pages
 
         private async void ConfirmDeleteModalClosed(ModalResult modalResult)
         {
-            ModalService.OnClose -= ConfirmDeleteModalClosed;
+            ModalService.Closed -= ConfirmDeleteModalClosed;
 
-            if (!modalResult.Cancelled)
+            if (modalResult.Cancelled)
             {
                 Contacts = await ContactService.GetAsync();
                 StateHasChanged();
@@ -49,7 +49,7 @@ namespace ContactMeUp.Pages
 
         protected void Update(Contact contact)
         {
-            ModalService.OnClose += UpdateModalClosed;
+            ModalService.Closed += UpdateModalClosed;
 
             ModalParameters parameters = new ModalParameters();
             parameters.Add("ToUpdate", contact);
@@ -59,7 +59,7 @@ namespace ContactMeUp.Pages
 
         private async void UpdateModalClosed(ModalResult modalResult)
         {
-            ModalService.OnClose -= UpdateModalClosed;
+            ModalService.Closed -= UpdateModalClosed;
 
             if (!modalResult.Cancelled)
             {

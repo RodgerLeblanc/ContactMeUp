@@ -1,7 +1,7 @@
-﻿using Blazored.Modal;
-using Blazored.Modal.Services;
-using ContactMeUp.Data;
+﻿using ContactMeUp.Data;
 using Microsoft.AspNetCore.Components;
+using Sparks.Components.Blazor;
+using Sparks.Components.Blazor.Services;
 using System.Threading.Tasks;
 
 namespace ContactMeUp.Components
