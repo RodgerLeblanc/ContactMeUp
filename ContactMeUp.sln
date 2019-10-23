@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactMeUp", "ContactMeUp\ContactMeUp.csproj", "{78F47AE3-9FC6-48F4-9700-D5676F0FBCD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparks.Controls.Blazor", "Sparks.Controls.Blazor\Sparks.Controls.Blazor.csproj", "{0775BB1B-4098-4DDF-9AFC-DE6A8B41061F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sparks.Components.Blazor", "Sparks.Components\Sparks.Components.Blazor\Sparks.Components.Blazor.csproj", "{BC503A3E-B971-4379-AE47-25681F66E3DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{78F47AE3-9FC6-48F4-9700-D5676F0FBCD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F47AE3-9FC6-48F4-9700-D5676F0FBCD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F47AE3-9FC6-48F4-9700-D5676F0FBCD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0775BB1B-4098-4DDF-9AFC-DE6A8B41061F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0775BB1B-4098-4DDF-9AFC-DE6A8B41061F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0775BB1B-4098-4DDF-9AFC-DE6A8B41061F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0775BB1B-4098-4DDF-9AFC-DE6A8B41061F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC503A3E-B971-4379-AE47-25681F66E3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC503A3E-B971-4379-AE47-25681F66E3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC503A3E-B971-4379-AE47-25681F66E3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC503A3E-B971-4379-AE47-25681F66E3DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
