@@ -1,0 +1,3 @@
+[submodule "Sparks.Components"]
+	path = Sparks.Components
+	url = https://github.com/RodgerLeblanc/Sparks.Components.git
