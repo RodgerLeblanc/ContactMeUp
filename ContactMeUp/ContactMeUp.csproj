@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>96b675eb-87c3-4982-b7d2-fd7e5746d3c1</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/45c89c45-d76a-4e8b-b8e1-5a945ed9f88e/resourcegroups/ContactMeUp/providers/microsoft.insights/components/ContactMeUp20191017083758</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.5.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.0" />
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.1.1" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 

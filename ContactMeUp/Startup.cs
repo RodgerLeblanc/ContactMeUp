@@ -33,6 +33,7 @@ namespace ContactMeUp
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<ContactAzureStorageConfiguration>();
             services.AddSingleton<ContactService>();
+            services.AddApplicationInsightsTelemetry();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
