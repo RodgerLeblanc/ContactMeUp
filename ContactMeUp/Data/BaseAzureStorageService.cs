@@ -13,6 +13,7 @@ namespace ContactMeUp.Data
     {
         private readonly string _defaultPartitionKey = typeof(TEntity).Name;
         private bool _initialized = false;
+        private bool _isReadOnly;
 
         protected BaseAzureStorageService(IAzureStorageConfiguration azureStorageConfiguration, IConfiguration configuration)
         {
@@ -35,6 +36,8 @@ namespace ContactMeUp.Data
             {
                 throw new ArgumentException($"{nameof(IAzureStorageConfiguration)} does not have a valid {nameof(IAzureStorageConfiguration.TableName)}.");
             }
+
+            _isReadOnly = azureStorageConfiguration.IsReadOnly;
 
             try
             {
@@ -59,7 +62,7 @@ namespace ContactMeUp.Data
                 throw new InvalidOperationException($"Could not find a valid {nameof(Table)}.");
             }
 
-            if (!_initialized)
+            if (!_initialized && !_isReadOnly)
             {
                 await Table.CreateIfNotExistsAsync();
                 _initialized = true;
@@ -85,7 +88,7 @@ namespace ContactMeUp.Data
                 throw new InvalidOperationException($"Could not find a valid {nameof(Table)}.");
             }
 
-            if (!_initialized)
+            if (!_initialized && !_isReadOnly)
             {
                 await Table.CreateIfNotExistsAsync();
                 _initialized = true;
@@ -111,6 +114,11 @@ namespace ContactMeUp.Data
 
         public virtual async Task<TEntity> CreateOrUpdateAsync(TEntity entity)
         {
+            if (_isReadOnly)
+            {
+                throw new InvalidOperationException($"This Azure Storage Service is in readonly mode.");
+            }
+
             if (Table == null)
             {
                 throw new InvalidOperationException($"Could not find a valid {nameof(Table)}.");
@@ -152,6 +160,11 @@ namespace ContactMeUp.Data
 
         public virtual async Task<int> DeleteAsync(TEntity entity)
         {
+            if (_isReadOnly)
+            {
+                throw new InvalidOperationException($"This Azure Storage Service is in readonly mode.");
+            }
+
             if (Table == null)
             {
                 throw new InvalidOperationException($"Could not find a valid {nameof(Table)}.");
