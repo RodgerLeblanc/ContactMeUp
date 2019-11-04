@@ -4,19 +4,4 @@
 
 Blazor application used to collect contact informations at some event.
 
-To use this app, add an `appsettings.json` file and include your Azure Storage ConnectionString.
-```csharp
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "<YOUR_CONNECTION_STRING>"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  },
-  "AllowedHosts": "*"
-}
-```
+To use this app, replace the connection strings in `appsettings.json` with your own Azure Storage ConnectionString.
