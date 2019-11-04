@@ -14,7 +14,7 @@ namespace ContactMeUp.Data
         private readonly string _defaultPartitionKey = typeof(TEntity).Name;
         private bool _initialized = false;
 
-        public BaseAzureStorageService(IAzureStorageConfiguration azureStorageConfiguration, IConfiguration configuration)
+        protected BaseAzureStorageService(IAzureStorageConfiguration azureStorageConfiguration, IConfiguration configuration)
         {
             if (azureStorageConfiguration == null)
             {
@@ -52,7 +52,7 @@ namespace ContactMeUp.Data
 
         protected CloudTable Table { get; }
 
-        public async Task<IList<TEntity>> GetAsync()
+        public virtual async Task<IList<TEntity>> GetAsync()
         {
             if (Table == null)
             {
@@ -78,7 +78,7 @@ namespace ContactMeUp.Data
             }
         }
 
-        public async Task<TEntity> GetAsync(Guid id)
+        public virtual async Task<TEntity> GetAsync(Guid id)
         {
             if (Table == null)
             {
@@ -109,7 +109,7 @@ namespace ContactMeUp.Data
             }
         }
 
-        public async Task<TEntity> CreateOrUpdateAsync(TEntity entity)
+        public virtual async Task<TEntity> CreateOrUpdateAsync(TEntity entity)
         {
             if (Table == null)
             {
@@ -150,7 +150,7 @@ namespace ContactMeUp.Data
             }
         }
 
-        public async Task<int> DeleteAsync(TEntity entity)
+        public virtual async Task<int> DeleteAsync(TEntity entity)
         {
             if (Table == null)
             {

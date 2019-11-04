@@ -33,6 +33,7 @@ namespace ContactMeUp
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<ContactAzureStorageConfiguration>();
             services.AddSingleton<ContactService>();
+            services.AddSingleton<IReferenceHandler, ReferenceHandler>();
             services.AddApplicationInsightsTelemetry();
         }
 
