@@ -7,7 +7,7 @@ namespace ContactMeUp.Data
 {
     public class ContactAzureStorageConfiguration : IAzureStorageConfiguration
     {
-        public string ConnectionStringName => "DefaultConnection";
+        public string ConnectionStringName => "ContactConnection";
         public string TableName => "Contacts";
     }
 }

@@ -1,0 +1,16 @@
+﻿@page "/settings"
+
+@inject IReferenceHandler ReferenceHandler
+
+<h3>Paramètres</h3>
+
+@foreach (var reference in ReferenceHandler.References)
+{
+    <p>
+        <input type="radio"
+               checked="@(ReferenceHandler.CurrentReference == @reference)"
+               @onchange="@(_ => ReferenceHandler.CurrentReference = @reference)" />
+
+        @reference.Name
+    </p>
+}

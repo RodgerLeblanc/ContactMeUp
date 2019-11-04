@@ -13,5 +13,7 @@ namespace ContactMeUp.Data
         public string SMS { get; set; }
         public string Email { get; set; }
         public string Other { get; set; }
+        public string Reference { get; set; }
+        public DateTime CreationTime { get; set; }
     }
 }
