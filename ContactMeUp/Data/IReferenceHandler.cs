@@ -4,7 +4,7 @@ namespace ContactMeUp.Data
 {
     public interface IReferenceHandler
     {
-        ReadOnlyCollection<Reference> References { get; }
+        ReadOnlyCollection<Reference> References { get; set; }
         Reference CurrentReference { get; set; }
     }
 }

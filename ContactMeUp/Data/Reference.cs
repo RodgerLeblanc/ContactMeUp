@@ -6,12 +6,16 @@ namespace ContactMeUp.Data
 {
     public class Reference : TableEntity
     {
+        public Reference()
+        {
+        }
+
         public Reference(string name, string relativeUrl)
         {
             Name = name;
             RowKey = relativeUrl;
         }
 
-        public string Name { get; }
+        public string Name { get; set; }
     }
 }

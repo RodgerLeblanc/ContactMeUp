@@ -4,5 +4,6 @@
     {
         string ConnectionStringName { get; }
         string TableName { get; }
+        bool IsReadOnly { get; }
     }
 }
